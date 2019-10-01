@@ -1,3 +1,5 @@
+import os
+
 from django.urls import path
 from django.urls import re_path
 from django.views.static import serve
@@ -5,8 +7,6 @@ from . import views
 urlpatterns = [
         path('', views.index, name='index'),
 ]
-
-import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -19,4 +19,6 @@ urlpatterns += [
     path('book/<int:pk>', views.BookDetailView.as_view(), name='book-detail'),
     path('authors/', views.AuthorListView.as_view(), name='authors'),
     path('author/<int:pk>', views.AuthorDetailView.as_view(), name='author-detail'),
+    path('mybooks/', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'),
+    path('all-borrowed-books/', views.AllBorrowedBooksListView.as_view(), name='all-borrowed'),
 ]
